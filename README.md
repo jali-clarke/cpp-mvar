@@ -8,3 +8,5 @@ have data, putting data in will set its state to closed.  If you try to take
 data out from an open MVar, the thread will block until it is closed.  Similarly,
 if you try to put data into a closed MVar, the thread will block until the MVar
 is open.
+
+Requires at least C++11.
