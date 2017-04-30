@@ -9,4 +9,7 @@ to take data out from an open MVar, the thread will block until it is closed.
 Similarly, if you try to put data into a closed MVar, the thread will block until
 the MVar is open.
 
+Run the program multiple times.  The unsynched version may not always return 10000.
+The synched version will (should) always return 10000.
+
 Requires at least C++11.
