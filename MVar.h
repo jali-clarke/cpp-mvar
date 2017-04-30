@@ -14,11 +14,18 @@ private:
     T data;
 
 public:
+    // construct empty MVar
     MVar(){
         openLock.lock();
     }
 
-    const T& get() const{
+    // construct occupied MVar
+    MVar(const T& initData){
+        data = initData;
+        closeLock.lock();
+    }
+
+    const T& get(){
         openLock.lock(); // box is now open
         closeLock.unlock(); // ditto
         return data;
