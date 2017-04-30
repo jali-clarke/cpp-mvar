@@ -39,13 +39,18 @@ public:
 
     template <typename Func>
     void modify(Func f){
-        openLock.lock(); // box is now open
-        closeLock.unlock(); // ditto
+        // open the box, do something, close the box
+        put(f(get()));
+    }
 
-        data = f(data);
+    const T& read(){
+        const T& temp = get();
 
-        closeLock.lock(); // box is closed
-        openLock.unlock(); // ditto
+        // don't want to use put() since we want to avoid unnecessary copying
+        closeLock.lock();
+        openLock.unlock();
+
+        return temp;
     }
 };
 

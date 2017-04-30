@@ -49,7 +49,7 @@ void synched(){
     t0.join();
     t1.join();
 
-    std::cout << "Final count - synched (should be 10000): " << count.get() << '\n';
+    std::cout << "Final count - synched (should be 10000): " << count.read() << '\n';
 }
 
 int main(){
