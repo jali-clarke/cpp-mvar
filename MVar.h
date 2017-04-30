@@ -19,21 +19,21 @@ public:
     }
 
     const T& get() const{
-        openLock.lock() // box is now open
-        closeLock.unlock() // ditto
+        openLock.lock(); // box is now open
+        closeLock.unlock(); // ditto
         return data;
     }
 
     void put(const T& newData){
-        closeLock.lock() // box is closed
+        closeLock.lock(); // box is closed
         data = newData;
-        openLock.unlock() // ditto
+        openLock.unlock(); // ditto
     }
 
     template <typename Func>
     void modify(Func f){
-        openLock.lock() // box is now open
-        closeLock.unlock() // ditto
+        openLock.lock(); // box is now open
+        closeLock.unlock(); // ditto
 
         data = f(data);
 
